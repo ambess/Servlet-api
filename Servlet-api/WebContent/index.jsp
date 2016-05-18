@@ -5,6 +5,6 @@
 <title>Please fill your names</title>
 </head>
 <body>
-<h1>Hello ${sessionScope.nom} ${sessionScope.prenom}</h1>
+<h1>Hello ${applicationScope.nom} ${applicationScope.prenom}</h1>
 </body>
 </html>
