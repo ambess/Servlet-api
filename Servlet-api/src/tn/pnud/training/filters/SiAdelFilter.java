@@ -9,11 +9,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter({ "/MyServlet"})
+import tn.pnud.training.filters.wrappers.ResponseWrapper;
+
+//@WebFilter({ "/MyServlet" })
 public class SiAdelFilter implements Filter {
 
 	FilterConfig config;
@@ -31,14 +33,18 @@ public class SiAdelFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
+		ResponseWrapper wrapper = new ResponseWrapper(res);
+		// if doesn't check null requestParam, but it should
 		if ((req.getParameter("nom").equals("Adel"))) {
 			req.setAttribute("nom", request.getParameter("nom"));
 			req.setAttribute("prenom", request.getParameter("prenom"));
-			chain.doFilter(req, res);
-		} 
-		else {
+			wrapper.addCookie(new Cookie("SiAdel", "Rawwa7"));
+			wrapper.addHeader("SiAdel", "Rawwa7");
+			chain.doFilter(req, wrapper);
+		} else {
 			res.sendRedirect("welcome.html");
 		}
+
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

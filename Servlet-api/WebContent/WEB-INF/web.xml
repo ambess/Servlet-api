@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Servlet-api</display-name>
-  <context-param>
-    <param-name>jdbcConnectionString</param-name>
-    <param-value>Server=localhost:/;Database=myDataBase;Uid=myUsername;Pwd=myPassword;</param-value>
-  </context-param>
-  <session-config>
-    <session-timeout>30</session-timeout>
-  </session-config>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Servlet-api</display-name>
+	<context-param>
+		<param-name>jdbcConnectionString</param-name>
+		<param-value>Server=localhost:/;Database=myDataBase;Uid=myUsername;Pwd=myPassword;</param-value>
+	</context-param>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<filter>
+		<filter-name>MyFilter</filter-name>
+		<filter-class>http://localhost:8080/Servlet-api/MyServlet.SiAdelFilter</filter-class>
+		<init-param>
+			<param-name>siAdel</param-name>
+			<param-value>AAA</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<servlet-name>/MyServlet</servlet-name>
+	</filter-mapping>
 </web-app>
