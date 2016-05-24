@@ -24,6 +24,7 @@ public class MyServlet extends HttpServlet implements HttpSessionAttributeListen
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setAttribute("nom", request.getUserPrincipal().getName());
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

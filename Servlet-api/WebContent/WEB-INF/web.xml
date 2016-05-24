@@ -3,6 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
+
 	<display-name>Servlet-api</display-name>
 	<context-param>
 		<param-name>jdbcConnectionString</param-name>
@@ -11,16 +12,61 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	<filter>
-		<filter-name>MyFilter</filter-name>
-		<filter-class>http://localhost:8080/Servlet-api/MyServlet.SiAdelFilter</filter-class>
-		<init-param>
-			<param-name>siAdel</param-name>
-			<param-value>AAA</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>MyFilter</filter-name>
-		<servlet-name>/MyServlet</servlet-name>
-	</filter-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>MyServlet WebResourceName</web-resource-name>
+			<url-pattern>/welcome.html</url-pattern>
+			<url-pattern>/MyServlet</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+
+		<auth-constraint>
+			<role-name>Adel</role-name>
+		</auth-constraint>
+
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>MyServlet WebResourceName2</web-resource-name>
+			<url-pattern>/documentaliste.html</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+
+		<auth-constraint>
+			<role-name>Documentaliste</role-name>
+		</auth-constraint>
+
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+
+	</security-constraint>
+
+	<security-role>
+		<role-name>Adel</role-name>
+	</security-role>
+	<security-role>
+		<role-name>Documentaliste</role-name>
+	</security-role>
+
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/welcome.html</form-login-page>
+			<form-error-page>/welcomeError.html</form-error-page>
+		</form-login-config>
+	</login-config>
+
+
+
+
 </web-app>
