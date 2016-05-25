@@ -9,8 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+
+import tn.pnud.training.model.Administrator;
 
 @WebServlet(description = "My first annotated servlet", initParams = { @WebInitParam(name = "prenom", value = "Adel"),
 		@WebInitParam(name = "nom", value = "CHAMAKH") }, name = "myServlet", urlPatterns = "/MyServlet")
@@ -24,7 +27,21 @@ public class MyServlet extends HttpServlet implements HttpSessionAttributeListen
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("nom", request.getUserPrincipal().getName());
+		HttpSession session = request.getSession();
+		
+		
+		
+		Administrator administrator2 = new Administrator("01234566", "Haykel", "Chouchen");		
+		request.setAttribute("Admin", administrator2);
+		
+		Administrator administrator = new Administrator("01234566", "Adel", "Chamakh");		
+		session.setAttribute("Admin", administrator);
+		
+		String[] names = {"Adel","Haykel","Boujemaa","Amine"};
+		session.setAttribute("Admin", administrator);
+		session.setAttribute("siAdelJaa", null);
+		session.setAttribute("nbPresent", 4);
+		session.setAttribute("names", names);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

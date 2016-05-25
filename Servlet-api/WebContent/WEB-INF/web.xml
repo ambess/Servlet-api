@@ -13,58 +13,26 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>MyServlet WebResourceName</web-resource-name>
-			<url-pattern>/welcome.html</url-pattern>
-			<url-pattern>/MyServlet</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>/*</url-pattern>
+			<el-ignored>false</el-ignored>
+		</jsp-property-group>
+	</jsp-config>
 
-		<auth-constraint>
-			<role-name>Adel</role-name>
-		</auth-constraint>
-
-		<user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-
-	</security-constraint>
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>MyServlet WebResourceName2</web-resource-name>
-			<url-pattern>/documentaliste.html</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-
-		<auth-constraint>
-			<role-name>Documentaliste</role-name>
-		</auth-constraint>
-
-		<user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-
-	</security-constraint>
-
-	<security-role>
-		<role-name>Adel</role-name>
-	</security-role>
-	<security-role>
-		<role-name>Documentaliste</role-name>
-	</security-role>
-
-
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/welcome.html</form-login-page>
-			<form-error-page>/welcomeError.html</form-error-page>
-		</form-login-config>
-	</login-config>
+	<!-- <security-constraint> <web-resource-collection> <web-resource-name>MyServlet 
+		WebResourceName</web-resource-name> <url-pattern>/welcome.html</url-pattern> 
+		<url-pattern>/MyServlet</url-pattern> <http-method>GET</http-method> <http-method>POST</http-method> 
+		</web-resource-collection> <auth-constraint> <role-name>Admin</role-name> 
+		</auth-constraint> </security-constraint> <security-constraint> <web-resource-collection> 
+		<web-resource-name>MyServlet WebResourceName2</web-resource-name> <url-pattern>/documentaliste.html</url-pattern> 
+		<http-method>GET</http-method> <http-method>POST</http-method> </web-resource-collection> 
+		<auth-constraint> <role-name>Documentaliste</role-name> </auth-constraint> 
+		</security-constraint> <security-role> <role-name>Admin</role-name> </security-role> 
+		<security-role> <role-name>Documentaliste</role-name> </security-role> <login-config> 
+		<auth-method>FORM</auth-method> <form-login-config> <form-login-page>/welcome.html</form-login-page> 
+		<form-error-page>/welcomeError.html</form-error-page> </form-login-config> 
+		</login-config> -->
 
 
 
