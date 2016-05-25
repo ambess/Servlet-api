@@ -4,6 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>true</el-ignored>
+		</jsp-property-group>
+	</jsp-config>
+
 	<display-name>Servlet-api</display-name>
 	<context-param>
 		<param-name>jdbcConnectionString</param-name>
@@ -13,12 +20,8 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
-	<jsp-config>
-		<jsp-property-group>
-			<url-pattern>/*</url-pattern>
-			<el-ignored>false</el-ignored>
-		</jsp-property-group>
-	</jsp-config>
+	
+
 
 	<!-- <security-constraint> <web-resource-collection> <web-resource-name>MyServlet 
 		WebResourceName</web-resource-name> <url-pattern>/welcome.html</url-pattern> 

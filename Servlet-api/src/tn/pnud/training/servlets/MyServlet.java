@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+import org.apache.taglibs.standard.tag.rt.core.UrlTag;
 
 import tn.pnud.training.model.Administrator;
 
@@ -27,8 +28,13 @@ public class MyServlet extends HttpServlet implements HttpSessionAttributeListen
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		
+		// Par convention 1 equivaut à Custom tag
+		// Par convention 2 equivaut à Standard tag
+		// Par convention 3 equivaut à EL
+		request.setAttribute("whichIsTested", request.getParameter("type"));
 		
 		
 		Administrator administrator2 = new Administrator("01234566", "Haykel", "Chouchen");		
@@ -42,7 +48,7 @@ public class MyServlet extends HttpServlet implements HttpSessionAttributeListen
 		session.setAttribute("siAdelJaa", null);
 		session.setAttribute("nbPresent", 4);
 		session.setAttribute("names", names);
-		response.sendRedirect(request.getContextPath()+"/index.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	@Override
