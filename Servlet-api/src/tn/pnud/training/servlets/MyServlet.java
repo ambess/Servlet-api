@@ -42,7 +42,7 @@ public class MyServlet extends HttpServlet implements HttpSessionAttributeListen
 		session.setAttribute("siAdelJaa", null);
 		session.setAttribute("nbPresent", 4);
 		session.setAttribute("names", names);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}
 
 	@Override
