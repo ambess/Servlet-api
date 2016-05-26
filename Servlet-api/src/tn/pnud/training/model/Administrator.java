@@ -12,6 +12,7 @@ public class Administrator implements Serializable, HttpSessionBindingListener {
 	private String lastname;
 
 	public Administrator() {
+		this.cin = " 123456789";
 	}
 
 	public Administrator(String cin, String firstname, String lastname) {
